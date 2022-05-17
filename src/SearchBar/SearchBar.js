@@ -1,6 +1,14 @@
 import React, {useState} from 'react'
 import './SearchBar.css'
 
+const products = [
+    'shampoo',
+    'body wash',
+    'face wash',
+    'soap bar',
+    'conditioner'
+]
+
 const SearchBar = () => {
 
     const clearInput = () => {
@@ -18,9 +26,12 @@ const SearchBar = () => {
     return(
     <div>
         <input onChange={handleInputChange} type="text" value={searchValue} placeholder="search..." />
-
         {shouldDisplayButton && <button id='clearButton' onClick={clearInput} >clear</button>}
-        
+        <ul>
+            {products.map((product) => {
+                return <li key={product}>{product}</li>
+            })}
+        </ul>
     </div>
     )
 }
