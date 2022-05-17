@@ -1,18 +1,30 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import SearchBar from './SearchBar/SearchBar'
-
-const products = [
-   'shampoo',
-   'body wash',
-   'face wash',
-   'soap bar',
-   'conditioner'
-]
+import Loader from './media/loading.gif'
 
 const App = () => {
+
+   const [productsState, setProductsState] = useState([])
+
+   useEffect(() => {
+      setTimeout(() => {
+         setProductsState([
+            'shampoo',
+            'body wash',
+            'face wash',
+            'soap bar',
+            'conditioner',
+         ])
+      }, 2000)
+   }, [])
+
+   const hasProducts = productsState.length > 0
+
     return (
      <div>
-        <SearchBar products={products}/>
+        {hasProducts ? <SearchBar products={productsState}/> : <img src={Loader} alt="loading..." />}
+        
+
      </div>
     )  
   }

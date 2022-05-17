@@ -1,15 +1,9 @@
 import React, {useState} from 'react'
 import './SearchBar.css'
 
-const products = [
-    'shampoo',
-    'body wash',
-    'face wash',
-    'soap bar',
-    'conditioner'
-]
 
-const SearchBar = () => {
+
+const SearchBar = (props) => {
     // Enabling the user to type into the searchbar by clearing it with an empty string //
     const clearInput = () => {
         setSearchValue('')
@@ -27,7 +21,7 @@ const SearchBar = () => {
     const shouldDisplayButton = searchValue.length > 0
     
     // Filter through the products array (above) with the 'searchValue' and returning items that match'
-    const filterSearchbar = products.filter((product) => {
+    const filterSearchbar = props.products.filter((product) => {
         return product.includes(searchValue)
     })
 
