@@ -22,13 +22,17 @@ const SearchBar = () => {
     }
 
     const shouldDisplayButton = searchValue.length > 0
-        
+    
+    const filterSearchbar = products.filter((product) => {
+        return product.includes(searchValue)
+    })
+
     return(
     <div>
         <input onChange={handleInputChange} type="text" value={searchValue} placeholder="search..." />
         {shouldDisplayButton && <button id='clearButton' onClick={clearInput} >clear</button>}
         <ul>
-            {products.map((product) => {
+            {filterSearchbar.map((product) => {
                 return <li key={product}>{product}</li>
             })}
         </ul>
