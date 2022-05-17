@@ -7,15 +7,15 @@ const App = () => {
    const [productsState, setProductsState] = useState([])
 
    useEffect(() => {
-      setTimeout(() => {
-         setProductsState([
-            'shampoo',
-            'body wash',
-            'face wash',
-            'soap bar',
-            'conditioner',
-         ])
-      }, 2000)
+
+      fetch('https://fakestoreapi.com/products')
+         .then(res=>res.json())
+         .then((productsArray) => {
+            const newProductsState = productsArray.map((product) => {
+               return product.title
+            })
+            setProductsState(newProductsState)
+         })
    }, [])
 
    const hasProducts = productsState.length > 0
